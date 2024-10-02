@@ -1,5 +1,6 @@
 from glob import glob
 from string import Template
+from pathlib import Path
 
 
 if __name__ == '__main__':
@@ -16,6 +17,9 @@ if __name__ == '__main__':
         for file in files:
             name = file.split('/')[-1]
             insertion += f'\n      <a href="pdfs/large/{name}">{name}</a><br>'
+
+    for bad_file in glob('*.pdf:Zone.Identifier') + glob('large/*.pdf:Zone.Identifier'):
+        Path(bad_file).unlink()
 
     with open('index.html', 'w') as f:
         f.write(template.substitute({'FILES': insertion}))
