@@ -11,12 +11,12 @@ if __name__ == '__main__':
     if files := glob('*.pdf'):
         insertion += '<h2>PDF files:</h2>'
         for file in files:
-            insertion += f'\n      <a href="{file}">{file.replace(" ", "%20")}</a><br>'
+            insertion += f'\n      <a href="{file.replace(" ", "%20")}">{file}</a><br>'
     if files := glob('large/*.pdf'):
         insertion += '\n      <h2>Large PDF files:</h2>'
         for file in files:
             name = file.split('/')[-1]
-            insertion += f'\n      <a href="large/{name}">{name.replace(" ", "%20")}</a><br>'
+            insertion += f'\n      <a href="large/{name.replace(" ", "%20")}">{name}</a><br>'
 
     for bad_file in glob('*.pdf:Zone.Identifier') + glob('large/*.pdf:Zone.Identifier'):
         Path(bad_file).unlink()
